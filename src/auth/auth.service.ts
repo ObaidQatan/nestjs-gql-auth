@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { User } from '../users/entities/user.entity';
 import { UsersService } from '../users/users.service';
 import { LoginUserInput } from './dto/login-user.input';
 
@@ -16,8 +17,7 @@ export class AuthService {
     return null;
   }
 
-  async login(loginUserInput: LoginUserInput) {
-    const user = await this.usersService.findOne(loginUserInput.username);
+  async login(user: User) {
     return {
       access_token: 'access_token',
       user,
