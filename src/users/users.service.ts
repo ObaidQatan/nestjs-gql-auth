@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { print } from '../utils/print';
 import { CreateUserInput } from './dto/create-user.input';
 
 @Injectable()
@@ -30,7 +31,8 @@ export class UsersService {
   }
 
   findOne(username: string) {
-    return this.users.find((user) => user.username === username);
+    const user = this.users.find((user) => user.username === username);
+    return user;
   }
 
   // update(id: number, updateUserInput: UpdateUserInput) {
