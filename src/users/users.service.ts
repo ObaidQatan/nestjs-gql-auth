@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { print } from '../utils/print';
 import { CreateUserInput } from './dto/create-user.input';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -8,12 +8,12 @@ export class UsersService {
     {
       id: 1,
       username: 'John Doe',
-      password: '123456',
+      password: bcrypt.hashSync('123456', 10),
     },
     {
       id: 2,
       username: 'Steve Smith',
-      password: '654321',
+      password: bcrypt.hashSync('654321', 10),
     },
   ];
 
