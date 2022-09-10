@@ -15,11 +15,7 @@ import { LocalStrategy } from './local.strategy';
     UsersModule,
     PassportModule,
     JwtModule.register({
-      secret: (() => {
-        const scrt = jwtConfig().secret;
-        console.log(scrt);
-        return scrt;
-      })(),
+      secret: jwtConfig().secret,
       signOptions: { expiresIn: '60s' },
     }),
   ],

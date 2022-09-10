@@ -6,11 +6,13 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import jwtConfig from '../configs/jwt.config';
+import appConfig from '../configs/app.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [jwtConfig],
+      // envFilePath: ['.env', '.env.local'],
+      // load: [jwtConfig, appConfig],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
