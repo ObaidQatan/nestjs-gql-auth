@@ -19,8 +19,11 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "db:migrate": "npx prisma migrate dev --schema=./db/prisma/schema.prisma",
-    "db:generate": "npx prisma generate --schema=./db/prisma/schema.prisma"
+    "db:migrate": "prisma migrate dev --schema=./db/prisma/schema.prisma",
+    "db:generate": "prisma generate --schema=./db/prisma/schema.prisma --watch",
+    "db:seed": "ts-node ./db/seed.ts",
+    "db:studio": "prisma studio --schema=./db/prisma/schema.prisma",
+    "dev": "concurrently \"npm:start:dev\" \"npm:db:generate\""
   },
   "dependencies": {
     "@nestjs/apollo": "^10.1.0",
@@ -56,6 +59,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "concurrently": "^7.4.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
