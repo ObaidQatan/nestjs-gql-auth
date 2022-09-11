@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import * as bcrypt from 'bcrypt';
-import { randomUUID } from 'crypto';
 import { PrismaService } from '../prisma.service';
+import { FindOneUserInput } from './dto/findOne-user.input';
+import { OrderByUserInput } from './dto/orderBy-user.input';
 
 @Injectable()
 export class UsersService {
@@ -43,15 +44,15 @@ export class UsersService {
     });
   }
 
-  async findAll() {
-    return await this.prisma.user.findMany();
+  async findAll(orderBy: OrderByUserInput) {
+    return await this.prisma.user.findMany({
+      orderBy: orderBy,
+    });
   }
 
-  async findOne(username: string) {
+  async findOne(findOneUserInput: FindOneUserInput) {
     const user = await this.prisma.user.findUnique({
-      where: {
-        username,
-      },
+      where: findOneUserInput,
     });
     return user;
   }
