@@ -35,7 +35,7 @@ input OrderByUserInput {
 
 type Query {
   user(findOneUserInput: FindOneUserInput!): User!
-  users(orderBy: OrderByUserInput!): [User!]!
+  users(orderBy: OrderByUserInput): [User!]!
 }
 
 type User {

@@ -18,7 +18,7 @@ export class UsersResolver {
 
   @Query(() => [User], { name: 'users' })
   @UseGuards(JWTAuthGuard)
-  findAll(@Args('orderBy') orderBy?: OrderByUserInput) {
+  findAll(@Args('orderBy', { nullable: true }) orderBy?: OrderByUserInput) {
     return this.usersService.findAll(orderBy);
   }
 
