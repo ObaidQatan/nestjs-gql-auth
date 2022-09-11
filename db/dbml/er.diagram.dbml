@@ -1,0 +1,16 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Project "NestJS GraphQL Auth" {
+  database_type: 'PostgreSQL'
+  Note: 'NestJS GraphQL Auth'
+}
+
+Table User {
+  id String [pk]
+  username String [unique, not null]
+  password String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  deletedAt DateTime
+}
