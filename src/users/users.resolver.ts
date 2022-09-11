@@ -4,6 +4,8 @@ import { User } from './entities/user.entity';
 import { UseGuards } from '@nestjs/common';
 import { JWTAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateUserInput } from './dto/create-user.input';
+import { FindOneUserInput } from './dto/findOne-user.input';
+import { OrderByUserInput } from './dto/orderBy-user.input';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -16,14 +18,14 @@ export class UsersResolver {
 
   @Query(() => [User], { name: 'users' })
   @UseGuards(JWTAuthGuard)
-  findAll() {
-    return this.usersService.findAll();
+  findAll(@Args('orderBy') orderBy?: OrderByUserInput) {
+    return this.usersService.findAll(orderBy);
   }
 
   @Query(() => User, { name: 'user' })
   @UseGuards(JWTAuthGuard)
-  findOne(@Args('username') username: string) {
-    return this.usersService.findOne(username);
+  findOne(@Args('findOneUserInput') findOneUserInput: FindOneUserInput) {
+    return this.usersService.findOne(findOneUserInput);
   }
 
   // @Mutation(() => User)

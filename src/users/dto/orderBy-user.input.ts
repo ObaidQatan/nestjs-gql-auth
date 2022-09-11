@@ -1,13 +1,11 @@
-import { Field } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 
-export class OrderByUserInput implements Prisma.UserOrderByWithRelationInput {
+@InputType()
+export class OrderByUserInput {
   @Field()
-  id?: Prisma.SortOrder;
+  field: Prisma.UserScalarFieldEnum;
 
   @Field()
-  username?: Prisma.SortOrder;
-
-  @Field()
-  password?: Prisma.SortOrder;
+  direction: Prisma.SortOrder;
 }

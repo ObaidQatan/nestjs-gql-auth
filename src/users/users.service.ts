@@ -44,9 +44,11 @@ export class UsersService {
     });
   }
 
-  async findAll(orderBy: OrderByUserInput) {
+  async findAll(orderBy?: OrderByUserInput) {
     return await this.prisma.user.findMany({
-      orderBy: orderBy,
+      orderBy: {
+        [orderBy?.field || 'createdAt']: orderBy?.direction || 'asc',
+      },
     });
   }
 

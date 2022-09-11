@@ -7,6 +7,11 @@ input CreateUserInput {
   username: String!
 }
 
+input FindOneUserInput {
+  id: String!
+  username: String!
+}
+
 type LoginResponse {
   access_token: String!
   user: User!
@@ -23,9 +28,14 @@ type Mutation {
   users(createUserInput: CreateUserInput!): User!
 }
 
+input OrderByUserInput {
+  direction: String!
+  field: String!
+}
+
 type Query {
-  user(username: String!): User!
-  users: [User!]!
+  user(findOneUserInput: FindOneUserInput!): User!
+  users(orderBy: OrderByUserInput!): [User!]!
 }
 
 type User {
