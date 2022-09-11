@@ -1,4 +1,11 @@
-import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Args,
+  Mutation,
+  Context,
+  GqlExecutionContext,
+} from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { UseGuards } from '@nestjs/common';
@@ -16,13 +23,13 @@ export class UsersResolver {
     return this.usersService.create(createUserInput);
   }
 
-  @Query(() => [User], { name: 'users' })
+  @Query(() => [User], { name: 'findAll' })
   @UseGuards(JWTAuthGuard)
   findAll(@Args('orderBy', { nullable: true }) orderBy?: OrderByUserInput) {
     return this.usersService.findAll(orderBy);
   }
 
-  @Query(() => User, { name: 'user' })
+  @Query(() => User, { name: 'findOne' })
   @UseGuards(JWTAuthGuard)
   findOne(@Args('findOneUserInput') findOneUserInput: FindOneUserInput) {
     return this.usersService.findOne(findOneUserInput);

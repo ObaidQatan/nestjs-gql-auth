@@ -8,7 +8,6 @@ input CreateUserInput {
 }
 
 input FindOneUserInput {
-  id: String!
   username: String!
 }
 
@@ -34,8 +33,8 @@ input OrderByUserInput {
 }
 
 type Query {
-  user(findOneUserInput: FindOneUserInput!): User!
-  users(orderBy: OrderByUserInput): [User!]!
+  findAll(orderBy: OrderByUserInput): [User!]!
+  findOne(findOneUserInput: FindOneUserInput!): User!
 }
 
 type User {
